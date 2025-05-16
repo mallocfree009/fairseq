@@ -319,7 +319,7 @@ class FairseqLMDecoder(BaseDecoder):
         self.lexicon = load_words(cfg.lexicon) if cfg.lexicon else None
         self.idx_to_wrd = {}
 
-        checkpoint = torch.load(cfg.lmpath, map_location="cpu")
+        checkpoint = torch.load(cfg.lmpath, map_location="cpu", weights_only=False)
 
         if "cfg" in checkpoint and checkpoint["cfg"] is not None:
             lm_args = checkpoint["cfg"]

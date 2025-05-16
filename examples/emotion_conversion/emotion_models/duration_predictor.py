@@ -23,7 +23,7 @@ def save_ckpt(model, path, model_class):
 
 
 def load_ckpt(path):
-    ckpt = torch.load(path)
+    ckpt = torch.load(path, weights_only=False)
     ckpt["model_class"]["_target_"] = "emotion_models.duration_predictor.CnnPredictor"
     model = hydra.utils.instantiate(ckpt["model_class"])
     model.load_state_dict(ckpt["state_dict"])

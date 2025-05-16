@@ -190,7 +190,7 @@ class HiFiGANVocoder(nn.Module):
     ) -> None:
         super().__init__()
         self.model = HiFiGANModel(model_cfg)
-        state_dict = torch.load(checkpoint_path)
+        state_dict = torch.load(checkpoint_path, weights_only=False)
         self.model.load_state_dict(state_dict["generator"])
         if fp16:
             self.model.half()
@@ -221,9 +221,9 @@ class CodeHiFiGANVocoder(BaseFairseqModel):
         super().__init__()
         self.model = CodeHiFiGANModel(model_cfg)
         if torch.cuda.is_available():
-            state_dict = torch.load(checkpoint_path)
+            state_dict = torch.load(checkpoint_path, weights_only=False)
         else:
-            state_dict = torch.load(checkpoint_path, map_location=torch.device("cpu"))
+            state_dict = torch.load(checkpoint_path, map_location=torch.device("cpu"), weights_only=False)
         self.model.load_state_dict(state_dict["generator"])
         self.model.eval()
         if fp16:

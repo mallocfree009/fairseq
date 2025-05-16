@@ -27,6 +27,7 @@ def load_checkpoint(src_cpt):
             map_location=(
                 lambda s, _: torch.serialization.default_restore_location(s, "cpu")
             ),
+            weights_only=False
         )
 
     return state_src

@@ -82,7 +82,7 @@ def main():
     parser = get_parser()
     args = parser.parse_args()
 
-    cp = torch.load(args.checkpoint, map_location="cpu")
+    cp = torch.load(args.checkpoint, map_location="cpu", weights_only=False)
 
     cfg = FairseqConfig(
         criterion=ModelCriterionConfig(_name="model", log_keys=["correct"]),

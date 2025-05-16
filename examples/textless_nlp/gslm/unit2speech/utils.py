@@ -36,7 +36,7 @@ def synthesize_audio(model, waveglow, denoiser, inp, lab=None, strength=0.0):
 
 
 def load_tacotron(tacotron_model_path, max_decoder_steps):
-    ckpt_dict = torch.load(tacotron_model_path)
+    ckpt_dict = torch.load(tacotron_model_path, weights_only=False)
     hparams = ckpt_dict["hparams"]
     hparams.max_decoder_steps = max_decoder_steps
     sr = hparams.sampling_rate
@@ -47,7 +47,7 @@ def load_tacotron(tacotron_model_path, max_decoder_steps):
 
 
 def load_waveglow(waveglow_path):
-    waveglow = torch.load(waveglow_path)["model"]
+    waveglow = torch.load(waveglow_path, weights_only=False)["model"]
     waveglow = waveglow.cuda().eval().half()
     for k in waveglow.convinv:
         k.float()

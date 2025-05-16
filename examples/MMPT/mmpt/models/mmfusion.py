@@ -44,7 +44,7 @@ class MMPTModel(nn.Module):
         from ..processors.models.s3dg import S3D
         video_encoder = S3D('pretrained_models/s3d_dict.npy', 512)
         video_encoder.load_state_dict(
-            torch.load('pretrained_models/s3d_howto100m.pth'))
+            torch.load('pretrained_models/s3d_howto100m.pth', weights_only=False))
         from transformers import AutoTokenizer
         tokenizer = AutoTokenizer.from_pretrained(
             config.dataset.bert_name, use_fast=config.dataset.use_fast

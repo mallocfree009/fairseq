@@ -378,7 +378,7 @@ class W2lFairseqLMDecoder(W2lDecoder):
         self.lexicon = load_words(args.lexicon) if args.lexicon else None
         self.idx_to_wrd = {}
 
-        checkpoint = torch.load(args.kenlm_model, map_location="cpu")
+        checkpoint = torch.load(args.kenlm_model, map_location="cpu", weights_only=False)
 
         if "cfg" in checkpoint and checkpoint["cfg"] is not None:
             lm_args = checkpoint["cfg"]

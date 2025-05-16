@@ -7,7 +7,7 @@
 require 'torch'
 local fairseq = require 'fairseq'
 
-model = torch.load(arg[1])
+model = torch.load(arg[1], weights_only=False)
 
 function find_weight_norm(container, module)
   for _, wn in ipairs(container:listModules()) do

@@ -11,7 +11,7 @@ class Naive_F0_Decoder(torch.nn.Module):
     def __init__(self, bounds_path, n_units=32):
         super().__init__()
 
-        bounds = torch.load(bounds_path)
+        bounds = torch.load(bounds_path, weights_only=False)
         bounds = torch.from_numpy(bounds[n_units])
         assert bounds.ndim == 1
 

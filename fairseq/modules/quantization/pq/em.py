@@ -197,13 +197,13 @@ class EM:
         """
 
         self.centroids = torch.load(
-            os.path.join(path, "{}_centroids.pth".format(layer))
+            os.path.join(path, "{}_centroids.pth".format(layer)), weights_only=False
         )
         self.assignments = torch.load(
-            os.path.join(path, "{}_assignments.pth".format(layer))
+            os.path.join(path, "{}_assignments.pth".format(layer)), weights_only=False
         )
         self.objective = torch.load(
-            os.path.join(path, "{}_objective.pth".format(layer))
+            os.path.join(path, "{}_objective.pth".format(layer)), weights_only=False
         )
 
 

@@ -343,9 +343,9 @@ class CodeDataset(FairseqDataset):
         logger.info(f"num entries: {len(self.starts)}")
 
         if os.path.exists(f"{manifest}.f0_stat.pt"):
-            self.f0_stats = torch.load(f"{manifest}.f0_stat.pt")
+            self.f0_stats = torch.load(f"{manifest}.f0_stat.pt", weights_only=False)
         elif config.f0_stats:
-            self.f0_stats = torch.load(config.f0_stats)
+            self.f0_stats = torch.load(config.f0_stats, weights_only=False)
 
         self.multispkr = config.multispkr
         if config.multispkr:
@@ -377,7 +377,7 @@ class CodeDataset(FairseqDataset):
                 quantizers_path = self.config.get_f0_vq_naive_quantizer(
                     self.log_f0, self.normalize_f0_mean, self.normalize_f0_std
                 )
-                quantizers = torch.load(quantizers_path)
+                quantizers = torch.load(quantizers_path, weights_only=False)
                 n_units = self.config.f0_vq_n_units
                 self._f0_quantizer = torch.from_numpy(quantizers[n_units])
             else:

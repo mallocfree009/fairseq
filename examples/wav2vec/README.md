@@ -380,7 +380,7 @@ Roberta on K-means codes | [Librispeech](http://www.openslr.org/12) | [download]
 import torch
 import fairseq
 
-cp = torch.load('/path/to/vq-wav2vec.pt')
+cp = torch.load('/path/to/vq-wav2vec.pt', weights_only=False)
 model, cfg, task = fairseq.checkpoint_utils.load_model_ensemble_and_task([cp])
 model = model[0]
 model.eval()

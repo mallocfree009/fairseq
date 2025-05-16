@@ -17,6 +17,6 @@ def update_state(state):
     return state
 
 
-src_state = torch.load(src_ckpt)
+src_state = torch.load(src_ckpt, weights_only=False)
 src_state = update_state(src_state)
 torch.save(src_state, new_ckpt)

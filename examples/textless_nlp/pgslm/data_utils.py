@@ -102,6 +102,6 @@ def load_f0(f0_dir, nshards):
     path_to_f0 = {}
     for rank in tqdm(range(1, nshards + 1), desc=f"load f0"):
         f0_shard_path = f"{f0_dir}/f0_{rank}_{nshards}.pt"
-        shard_path_to_f0 = torch.load(f0_shard_path)
+        shard_path_to_f0 = torch.load(f0_shard_path, weights_only=False)
         path_to_f0.update(shard_path_to_f0)
     return path_to_f0

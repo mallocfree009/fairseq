@@ -82,7 +82,7 @@ class CpcFeatureReader:
 
 
 def load_cpc_model(checkpoint_path, layer=None):
-    state_dict = torch.load(checkpoint_path)
+    state_dict = torch.load(checkpoint_path, weights_only=False)
     weights = state_dict["weights"]
     config = state_dict["config"]
     if layer is not None:

@@ -85,7 +85,7 @@ class SpkrEmbedder(nn.Module):
         pad=False,
     ):
         super(SpkrEmbedder, self).__init__()
-        embedder_pt = torch.load(embedder_path, map_location="cpu")
+        embedder_pt = torch.load(embedder_path, map_location="cpu", weights_only=False)
         self.embedder = SpeechEmbedder(embedder_params)
         self.embedder.load_state_dict(embedder_pt)
         self.embedder.eval()

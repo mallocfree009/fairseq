@@ -17,7 +17,7 @@ if not paths.filep(arg[1]) then
    os.exit(1)
 end
 
-dict = torch.load(arg[1])
+dict = torch.load(arg[1], weights_only=False)
 dst = paths.basename(arg[1]):gsub('.th7', '.txt')
 assert(dst:match('.txt$'))
 
